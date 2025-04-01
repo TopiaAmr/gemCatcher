@@ -1,13 +1,9 @@
 extends Area2D
 
+class_name Paddle
 
-const PADDLE_SPEED: float = 300
+const PADDLE_SPEED: float = 400
 
-#func _input(event: InputEvent) -> void:
-	#pass
-
-#func _unhandled_input(event: InputEvent) -> void:
-	#pass
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,3 +22,9 @@ func _process(delta: float) -> void:
 		get_viewport_rect().position.x,
 		get_viewport_rect().end.x,
 	)
+
+var score: int = 0
+
+func _on_area_entered(area: Area2D) -> void:
+	score += 1
+	print("New Score: ", score)

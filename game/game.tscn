@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpxml8httu22p"]
+[gd_scene load_steps=6 format=3 uid="uid://dpxml8httu22p"]
 
 [ext_resource type="Script" uid="uid://dososyn6klnig" path="res://game/game.gd" id="1_4fuuu"]
 [ext_resource type="Texture2D" uid="uid://cas5m4ewqqkwx" path="res://assets/GameBg.png" id="2_dxrkv"]
 [ext_resource type="PackedScene" uid="uid://bu4ko5wuxw8to" path="res://paddle/paddle.tscn" id="3_dakft"]
-[ext_resource type="PackedScene" uid="uid://dl8roqjkl163a" path="res://gems/gem.tscn" id="4_u5opy"]
+[ext_resource type="AudioStream" uid="uid://cdo7tixn45bb5" path="res://assets/bgm_action_5.mp3" id="4_4fuuu"]
+[ext_resource type="AudioStream" uid="uid://crrec3sdpce2s" path="res://assets/spell1_0.wav" id="5_dxrkv"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_4fuuu")
@@ -16,10 +17,17 @@ texture = ExtResource("2_dxrkv")
 [node name="Paddle" parent="." instance=ExtResource("3_dakft")]
 position = Vector2(594, 600)
 
-[node name="Gem" parent="." instance=ExtResource("4_u5opy")]
-position = Vector2(745, 227)
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
 
-[node name="Gem2" parent="." instance=ExtResource("4_u5opy")]
-position = Vector2(362, 160)
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_4fuuu")
+volume_db = -15.167
+autoplay = true
+
+[node name="ScoreSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_dxrkv")
 
 [connection signal="area_entered" from="Paddle" to="." method="_on_paddle_area_entered"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]
