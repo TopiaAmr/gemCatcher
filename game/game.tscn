@@ -21,3 +21,5 @@ position = Vector2(745, 227)
 
 [node name="Gem2" parent="." instance=ExtResource("4_u5opy")]
 position = Vector2(362, 160)
+
+[connection signal="area_entered" from="Paddle" to="." method="_on_paddle_area_entered"]

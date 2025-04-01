@@ -16,3 +16,7 @@ func _process(delta: float) -> void:
 		set_process(false)
 		queue_free()
 		
+
+
+func _on_area_entered(area: Area2D) -> void:
+	print("Gem hits ", area)
